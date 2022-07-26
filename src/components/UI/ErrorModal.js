@@ -7,7 +7,7 @@ const ErrorModal = (props) => {
 	return (
 		<div>
 			<div className={classes.backdrop} onClick={props.onConfirm}></div>
-			<Card className={classes.modal}>
+			<Card className={classes.modal} style={{ padding: 0 }}>
 				<header className={classes.header}>
 					<h2>{props.title}</h2>
 				</header>

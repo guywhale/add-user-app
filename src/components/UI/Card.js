@@ -5,8 +5,8 @@ const Card = styled.div`
 	max-width: 700px;
 	margin: 30px auto 0;
 	padding: 20px;
-	border-radius: 12px;
-	box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
+	border-radius: 10px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
 	background-color: #fff;
 `;
 

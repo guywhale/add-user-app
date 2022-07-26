@@ -34,9 +34,14 @@ const AddUser = (props) => {
 	const submitHandler = (event) => {
 		event.preventDefault();
 
+		const userInput = {
+			username: nameInputRef.current.value,
+			age: ageInputRef.current.value,
+		};
+
 		if (
-			nameInputRef.current.value.trim().length === 0 ||
-			ageInputRef.current.value.trim().length === 0
+			userInput.username.trim().length === 0 ||
+			userInput.age.trim().length === 0
 		) {
 			setError({
 				title: 'Invalid input',
@@ -46,18 +51,13 @@ const AddUser = (props) => {
 			return;
 		}
 
-		if (+ageInputRef.current.value < 1) {
+		if (+userInput.age < 1) {
 			setError({
 				title: 'Invalid age',
 				message: 'Please enter a valid age (more than 0)',
 			});
 			return;
 		}
-
-		const userInput = {
-			username: nameInputRef.current.value,
-			age: ageInputRef.current.value,
-		};
 
 		props.onAddUser(userInput);
 

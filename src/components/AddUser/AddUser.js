@@ -44,13 +44,25 @@ const AddUser = (props) => {
 		setUserInput((prevInputs) => {
 			return {
 				...prevInputs,
-				age: event.target.value,
+				age: +event.target.value,
 			};
 		});
 	};
 
 	const submitHandler = (event) => {
 		event.preventDefault();
+
+		if (
+			userInput.username.trim().length === 0 ||
+			userInput.username.trim().length === 0
+		) {
+			return;
+		}
+
+		if (+userInput.age < 1) {
+			return;
+		}
+
 		props.onAddUser(userInput);
 		setUserInput({
 			username: '',

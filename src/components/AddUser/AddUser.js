@@ -1,6 +1,7 @@
-// import React, { useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Card from '../UI/Card';
+import Button from '../Button/Button';
 
 const AddUserStyles = styled.form`
 	& label {
@@ -24,14 +25,59 @@ const AddUserStyles = styled.form`
 	}
 `;
 
-const AddUser = () => {
+const AddUser = (props) => {
+	const [userInput, setUserInput] = useState({
+		username: '',
+		age: '',
+	});
+
+	const usernameChangeHandler = (event) => {
+		setUserInput((prevInputs) => {
+			return {
+				...prevInputs,
+				username: event.target.value,
+			};
+		});
+	};
+
+	const ageChangeHandler = (event) => {
+		setUserInput((prevInputs) => {
+			return {
+				...prevInputs,
+				age: event.target.value,
+			};
+		});
+	};
+
+	const submitHandler = (event) => {
+		event.preventDefault();
+		props.onAddUser(userInput);
+		setUserInput({
+			username: '',
+			age: '',
+		});
+	};
+
 	return (
 		<Card>
-			<AddUserStyles>
+			<AddUserStyles onSubmit={submitHandler}>
 				<label htmlFor="AddUserUsername">Username</label>
-				<input type="text" id="AddUserUsername" />
+				<input
+					type="text"
+					id="AddUserUsername"
+					value={userInput.username}
+					onChange={usernameChangeHandler}
+				/>
 				<label htmlFor="AddUserAge">Age (Years)</label>
-				<input type="number" id="AddUserAge" min="0" step="1" />
+				<input
+					type="number"
+					id="AddUserAge"
+					min="0"
+					step="1"
+					value={userInput.age}
+					onChange={ageChangeHandler}
+				/>
+				<Button type="submit">Add User</Button>
 			</AddUserStyles>
 		</Card>
 	);
